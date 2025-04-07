@@ -1,0 +1,55 @@
+Web Framework Dev
+=====================
+
+Education Inventory (Item - Categories)
+
+----------------------------------------
+
+Web Page Ideas
+
+User Roles (Non - Admin/User Roles):
+
+1. Inventory Manager - manges items, categories and stock
+
+2. Teacher - can request items, check availability, view inventory
+
+3. Procurement Officer - Handles purchase orders and restocking
+
+4. Auditor - can only view inventory and reports
+
+----------------------------------------------------
+
+Use Cases:
+
+1. Manage inventory Items (CRUD)
+
+	- add / edit / delete items
+	- Assign them to categories (books, lab tools, computers, etc.)
+
+2. Manage Categories
+
+	- add / edit / delete item categories
+	- assign items under categories for organization and filtering
+
+3. Item Request Workflow
+	
+	- Teachers can request items for classrooms or labs
+	- Inventory managers can approve/reject requests
+
+4. Track Stock Levels
+
+	- Set stock quantity per item
+	- Automatically reduce stock when items are issued
+	- Notify when items are low in stock
+
+5. Restocking & Purchase Orders
+
+	- Procurement Officer creates purchase orders for low-stock items
+	- Inventory Manager approves and updates item quantities once received
+
+6. Inventory Reports & History
+
+	- View history of item usage, requests, and stock changes
+	- Export or view usage analytics (e.g, most used items)
+
+-------------------------------------------------------------------
