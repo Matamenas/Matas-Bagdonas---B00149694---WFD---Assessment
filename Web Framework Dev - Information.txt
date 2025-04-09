@@ -4,12 +4,14 @@ Web Framework Dev
 Education Inventory (Item - Categories)
 
 ----------------------------------------
-
-Web Page Ideas
+|				       |
+|	  -Web Page Ideas-             |
+|				       |
+----------------------------------------
 
 User Roles (Non - Admin/User Roles):
 
-1. Inventory Manager - manges items, categories and stock
+1. Inventory Manager - manages items, categories and stock
 
 2. Teacher - can request items, check availability, view inventory
 
@@ -17,7 +19,7 @@ User Roles (Non - Admin/User Roles):
 
 4. Auditor - can only view inventory and reports
 
-----------------------------------------------------
+----------------------------------------------------------------------
 
 Use Cases:
 
@@ -53,3 +55,5 @@ Use Cases:
 	- Export or view usage analytics (e.g, most used items)
 
 -------------------------------------------------------------------
+
+
