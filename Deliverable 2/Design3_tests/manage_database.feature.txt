@@ -1,0 +1,19 @@
+Feature: Manage Database
+  As a System Administrator
+  I want to back up and restore the database
+  So that data is safe and recoverable in case of issues
+
+  Scenario: Perform a database backup
+    Given I am logged in as a System Administrator
+    When I click on "Backup Database"
+    Then a backup file should be generated and downloaded
+
+  Scenario: Restore the database from a backup
+    Given I have a valid database backup file
+    When I upload the backup and confirm restoration
+    Then the system should restore data from the backup
+
+  Scenario: View system logs
+    Given I am logged in as a System Administrator
+    When I navigate to "System Logs"
+    Then I should see a list of recent system activities

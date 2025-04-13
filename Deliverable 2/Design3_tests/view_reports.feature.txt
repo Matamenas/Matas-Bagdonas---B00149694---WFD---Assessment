@@ -1,0 +1,15 @@
+Feature: View Inventory Reports
+  As any authorized user
+  I want to view item usage and stock reports
+  So I can track inventory trends
+
+  Scenario: Generate a usage report
+    Given I am logged in
+    When I go to the Reports section
+    And I filter by "Lab Equipment"
+    Then I should see a report of all Lab Equipment usage
+
+  Scenario: Export report to PDF
+    Given a report is visible on screen
+    When I click "Export to PDF"
+    Then a PDF version should be downloaded

@@ -1,0 +1,15 @@
+Feature: Request Items
+  As a Teacher
+  I want to request items from inventory
+  So that I can use them in my class
+
+  Scenario: Submit an item request
+    Given I am logged in as a Teacher
+    And an item "Microscope" exists in the system
+    When I request 2 "Microscopes" for "Classroom experiment"
+    Then my request should be submitted for approval
+
+  Scenario: View my past requests
+    Given I have submitted a request for "Markers"
+    When I view "My Requests"
+    Then I should see a record of the "Markers" request

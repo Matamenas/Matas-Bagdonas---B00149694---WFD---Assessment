@@ -1,0 +1,16 @@
+Feature: Approve or Reject Requests
+  As an Inventory Manager
+  I want to review and decide on item requests
+  So that only appropriate requests are fulfilled
+
+  Scenario: Approve a pending request
+    Given a request for "Microscopes" is pending
+    And I am logged in as an Inventory Manager
+    When I approve the request
+    Then the request status should be "Approved"
+
+  Scenario: Reject a request with note
+    Given a request for "30 Projectors" is pending
+    When I reject the request with note "Exceeds available stock"
+    Then the request status should be "Rejected"
+    And the teacher should see the note

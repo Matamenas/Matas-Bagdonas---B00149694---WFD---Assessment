@@ -1,0 +1,22 @@
+Feature: Manage Inventory Items
+  As an Inventory Manager
+  I want to add, edit, and delete items
+  So that the inventory is always up to date
+
+  Scenario: Add a new inventory item
+    Given I am logged in as an Inventory Manager
+    When I navigate to the "Add Item" page
+    And I enter "Microscope" with description "Optical instrument", category "Lab Equipment", and quantity "10"
+    And I submit the form
+    Then I should see "Microscope" in the item list
+
+  Scenario: Edit an existing item
+    Given an item "Microscope" exists in the system
+    And I am logged in as an Inventory Manager
+    When I edit the item to change the quantity to "15"
+    Then the updated quantity should be "15" in the item list
+
+  Scenario: Delete an item
+    Given an item "Old Projector" exists
+    When I delete "Old Projector"
+    Then "Old Projector" should no longer appear in the item list

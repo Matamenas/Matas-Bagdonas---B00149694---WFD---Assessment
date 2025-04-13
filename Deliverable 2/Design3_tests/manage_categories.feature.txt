@@ -1,0 +1,14 @@
+Feature: Manage Categories
+  As an Inventory Manager
+  I want to organize items into categories
+  So that inventory is easier to manage
+
+  Scenario: Add a new category
+    Given I am logged in as an Inventory Manager
+    When I create a category "Science Lab"
+    Then "Science Lab" should appear in the category list
+
+  Scenario: Delete a category
+    Given the category "Obsolete Equipment" exists
+    When I delete "Obsolete Equipment"
+    Then it should no longer appear in the category list

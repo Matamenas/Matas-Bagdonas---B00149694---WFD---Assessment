@@ -1,0 +1,19 @@
+Feature: Manage User Accounts
+  As a System Administrator
+  I want to create, update, and deactivate user accounts
+  So that only authorized users can access the system
+
+  Scenario: Add a new user account
+    Given I am logged in as a System Administrator
+    When I add a user with username "jane.doe", role "Teacher", and email "jane@example.com"
+    Then the new user "jane.doe" should appear in the user list
+
+  Scenario: Update an existing user role
+    Given a user "john.manager" exists with role "Teacher"
+    When I change their role to "Inventory Manager"
+    Then the user "john.manager" should have role "Inventory Manager"
+
+  Scenario: Deactivate a user account
+    Given a user "mark.admin" exists
+    When I deactivate "mark.admin"
+    Then "mark.admin" should no longer be able to log in

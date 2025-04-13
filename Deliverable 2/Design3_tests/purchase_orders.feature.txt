@@ -1,0 +1,15 @@
+Feature: Create Purchase Orders
+  As a Procurement Officer
+  I want to restock inventory when items are low
+  So that teachers always have needed resources
+
+  Scenario: Create a new purchase order
+    Given I am logged in as a Procurement Officer
+    And "Microscopes" are low in stock
+    When I create a purchase order for 20 "Microscopes"
+    Then the purchase order should be saved and marked "Pending"
+
+  Scenario: Receive items from a purchase order
+    Given a purchase order for "Microscopes" is pending
+    When I mark it as "Received"
+    Then the item stock should be updated accordingly
