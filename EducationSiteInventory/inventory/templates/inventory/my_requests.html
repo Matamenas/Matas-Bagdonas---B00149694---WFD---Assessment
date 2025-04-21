@@ -1,0 +1,30 @@
+{% extends 'inventory/base.html' %}
+{% block title %}My Requests{% endblock %}
+
+{% block content %}
+<h2>My Item Requests</h2>
+
+{% if requests %}
+<table border="1" cellpadding="8" cellspacing="0">
+    <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Reason</th>
+        <th>Date</th>
+    </tr>
+    {% for req in requests %}
+    <tr>
+        <td>{{ req.item.name }}</td>
+        <td>{{ req.quantity_requested }}</td>
+        <td>{{ req.status|capfirst }}</td>
+        <td>{{ req.reason }}</td>
+        <td>{{ req.created_at|date:"Y-m-d H:i" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>You have not made any requests yet.</p>
+{% endif %}
+
+{% endblock %}

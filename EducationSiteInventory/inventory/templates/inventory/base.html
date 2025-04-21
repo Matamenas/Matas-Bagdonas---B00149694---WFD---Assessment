@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Inventory System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'inventory/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Educational Inventory System</h1>
+        <nav>
+            <a href="{% url 'teacher_dashboard' %}">Dashboard</a>
+            <a href="{% url 'request_item' %}">Request Item</a>
+            <a href="{% url 'my_requests' %}">My Requests</a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Educational Inventory</p>
+    </footer>
+</body>
+</html>
