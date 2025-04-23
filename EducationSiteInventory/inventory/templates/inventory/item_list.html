@@ -4,7 +4,7 @@
 {% block content %}
 <h2 class="mb-4">Available Inventory</h2>
 
-{% if request.user.groups.all.0.name == "Admin" or request.user.groups.all.0.name == "Inventory Manager"%}
+{% if request.user.groups.all.0.name == "admin" or request.user.groups.all.0.name == "inventory manager"%}
   <a href="{% url 'add_item' %}" class="btn btn-primary mb-3">Add New Item</a>
 {% endif %}
 
@@ -17,7 +17,7 @@
           <h6 class="card-subtitle mb-2 text-muted">{{ item.category.name }}</h6>
           <p class="card-text">{{ item.description }}</p>
           <p class="card-text"><strong>Quantity:</strong> {{ item.quantity }}</p>
-          {% if request.user.groups.all.0.name == "Admin" or request.user.groups.all.0.name == "Inventory Manager" %}
+          {% if request.user.groups.all.0.name == "admin" or request.user.groups.all.0.name == "inventory manager" %}
             <a href="{% url 'edit_item' item.pk %}" class="btn btn-sm btn-warning">Edit</a>
             <a href="{% url 'delete_item' item.pk %}" class="btn btn-sm btn-danger">Delete</a>
           {% endif %}

@@ -10,24 +10,42 @@
     <link rel="stylesheet" href="{% static 'inventory/css/style.css' %}">
 </head>
 <body>
+   <body>
     <div class="container mt-4">
         <header>
-            <h1>Educational Inventory System</h1>
-            <nav>
-                <a href="{% url 'teacher_dashboard' %}">Dashboard</a>
-                {% if request.user.groups.all.0.name == "teacher" %}
-                    <a href="{% url 'request_item' %}">Request Item</a>
-                    <a href="{% url 'my_requests' %}">My Requests</a>
-                {% endif %}
-                <a href="{% url 'item_list' %}">Inventory</a>
-                {% if request.user.groups.all.0.name == "Admin" or request.user.groups.all.0.name == "Inventory Manager" or request.user.groups.all.0.name == "Procurement Officer" %}
-                    <a href="{% url 'view_requests' %}">Requests</a>
-                {% endif %}
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                </form>
+            <h1 class="mb-4 text-center">Educational Inventory System</h1>
 
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded px-3">
+                <a class="navbar-brand" href="{% url 'teacher_dashboard' %}">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                    aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {% if request.user.groups.all.0.name == "teacher" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'request_item' %}">Request Item</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'my_requests' %}">My Requests</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'item_list' %}">Inventory</a>
+                        </li>
+                        {% if request.user.groups.all.0.name == "admin" or request.user.groups.all.0.name == "inventory manager" or request.user.groups.all.0.name == "procurement officer" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'view_requests' %}">Requests</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <form method="post" action="{% url 'logout' %}" class="d-flex">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-light" type="submit">Logout</button>
+                    </form>
+                </div>
             </nav>
         </header>
         <main>
