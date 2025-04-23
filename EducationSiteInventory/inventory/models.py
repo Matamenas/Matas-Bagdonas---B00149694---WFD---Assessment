@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('teacher', 'Teacher'),
@@ -19,7 +18,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField(blank = True)
+    description = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
@@ -30,10 +29,11 @@ class ItemRequest(models.Model):
     teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity_requested = models.PositiveIntegerField()
+    requested_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='requested_by')
     status = models.CharField(max_length=20, choices=[
         ('pending', 'Pending'),
         ('approved', 'Approved'),
         ('rejected', 'Rejected')
-    ], default='pending')
+        ], default='pending')
     reason = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

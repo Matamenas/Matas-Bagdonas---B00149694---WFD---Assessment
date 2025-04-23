@@ -1,1 +1,24 @@
 https://github.com/Matamenas/Matas-Bagdonas---B00149694---WFD---Assessment
+
+logins for different users
+-----------
+Teacher:
+
+Teacher
+Learn123!
+------------
+Admin:
+
+admin
+qwerty
+------------
+Procurement Officer
+
+ProcurementOfficer
+Officer123!
+------------
+Inventory Manager
+
+InventoryManager
+Manager123!
+

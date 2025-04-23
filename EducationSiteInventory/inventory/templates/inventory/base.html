@@ -15,9 +15,14 @@
             <h1>Educational Inventory System</h1>
             <nav>
                 <a href="{% url 'teacher_dashboard' %}">Dashboard</a>
-                <a href="{% url 'request_item' %}">Request Item</a>
-                <a href="{% url 'my_requests' %}">My Requests</a>
+                {% if request.user.groups.all.0.name == "teacher" %}
+                    <a href="{% url 'request_item' %}">Request Item</a>
+                    <a href="{% url 'my_requests' %}">My Requests</a>
+                {% endif %}
                 <a href="{% url 'item_list' %}">Inventory</a>
+                {% if request.user.groups.all.0.name == "Admin" or request.user.groups.all.0.name == "Inventory Manager" or request.user.groups.all.0.name == "Procurement Officer" %}
+                    <a href="{% url 'view_requests' %}">Requests</a>
+                {% endif %}
                 <form method="post" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit">Logout</button>

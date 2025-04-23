@@ -1,0 +1,31 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+{% block title %}<h2>Item Requests</h2> {% endblock %}
+<table class="table">
+  <thead>
+    <tr>
+        <th>Item</th><th>Requested By</th><th>Quantity</th><th>Reason</th><th>Status</th><th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for req in requests %}
+    <tr>
+      <td>{{ req.item.name }}</td>
+      <td>{{ req.requested_by.username }}</td>
+      <td>{{ req.quantity_requested }}</td>
+      <td>{{ req.reason }}</td>
+      <td>{{ req.status }}</td>
+      <td>
+        {% if req.status == 'pending' %}
+          <a href="{% url 'approve_request' req.pk %}" class="btn btn-success btn-sm">Approve</a>
+          <a href="{% url 'reject_request' req.pk %}" class="btn btn-danger btn-sm">Reject</a>
+        {% elif req.status == 'approved' or 'rejected' %}
+            <p>No Action Needed</p>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,17 +1,12 @@
-from django.http import HttpResponseForbidden
-from django.shortcuts import render, redirect
 from .models import Item, ItemRequest
 from .forms import ItemRequestForm
 from .forms import ItemForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from .forms import CustomUserCreationForm
 
-def is_admin(user):
-    return user.groups.filter(name='Admin' or 'Inventory Manager').exists()
 
 def register(request):
     if request.method == 'POST':
@@ -22,6 +17,7 @@ def register(request):
 
             # add user to corresponding group
             group = Group.objects.get(name=role)
+            user.save()
             user.groups.add(group)
             login(request, user)
 
@@ -37,8 +33,6 @@ def item_list(request):
 
 @login_required
 def add_item(request):
-    if not is_admin(request.user):
-        return HttpResponseForbidden("Admin only")
 
     form = ItemForm(request.POST or None)
     if form.is_valid():
@@ -48,8 +42,6 @@ def add_item(request):
 
 @login_required
 def edit_item(request, pk):
-    if not is_admin(request.user):
-        return HttpResponseForbidden("Admin only")
 
     item = get_object_or_404(Item, pk=pk)
     form = ItemForm(request.POST or None, instance=item)
@@ -60,12 +52,29 @@ def edit_item(request, pk):
 
 @login_required
 def delete_item(request, pk):
-    if not is_admin(request.user):
-        return HttpResponseForbidden("Admin only")
 
     item = get_object_or_404(Item, pk=pk)
     item.delete()
     return redirect('item_list')
+
+@login_required
+def view_requests(request):
+    requests = ItemRequest.objects.all().order_by('-created_at')
+    return render(request, 'inventory/view_requests.html', {'requests': requests})
+
+@login_required
+def approve_requests(request, request_id):
+    req = get_object_or_404(ItemRequest, pk=request_id)
+    req.status = 'approved'
+    req.save()
+    return redirect('view_requests')
+
+@login_required
+def reject_requests(request, request_id):
+    req = get_object_or_404(ItemRequest, pk=request_id)
+    req.status = 'rejected'
+    req.save()
+    return redirect('view_requests')
 
 @login_required
 def teacher_dashboard(request):
@@ -77,6 +86,7 @@ def request_item(request):
         form = ItemRequestForm(request.POST)
         if form.is_valid():
             item_request = form.save(commit=False)
+            item_request.requested_by = request.user
             item_request.teacher = request.user
             item_request.save()
             return redirect('my_requests')
