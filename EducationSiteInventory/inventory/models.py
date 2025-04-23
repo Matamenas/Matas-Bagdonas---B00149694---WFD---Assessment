@@ -5,18 +5,26 @@ from django.db import models
 class CustomUser(AbstractUser):
     ROLE_CHOICES = [
         ('teacher', 'Teacher'),
-        ('manager', 'Manager'),
-        ('admin', 'System Admin'),
+        ('inventory manager', 'Inventory Manager'),
+        ('procurement officer', 'Procurement Officer'),
+        ('admin', 'Admin'),
     ]
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='teacher')
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='teacher')
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Item(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(blank = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.name} ({self.quantity})"
 
 class ItemRequest(models.Model):
     teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
