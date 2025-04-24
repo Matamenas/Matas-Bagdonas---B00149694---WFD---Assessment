@@ -1,8 +1,8 @@
 [https://github.com/Matamenas/Matas-Bagdonas---B00149694---WFD---Assessment
 
-#Logins for different users
+<h1>Logins for different users</h1>
 ------------------
-#Teacher
+<h2>Teacher</h2>
 
 Username:
 Teacher
@@ -11,7 +11,7 @@ Password:
 Learn123!
 
 ------------------
-#Admin
+<h2>Admin</h2>
 
 Username:
 admin
@@ -20,7 +20,7 @@ Password:
 qwerty
 
 ------------------
-#Procurement Officer
+<h2>Procurement Officer</h2>
 
 Username:
 ProcurementOfficer
@@ -29,7 +29,7 @@ Password:
 Officer123!
 
 ------------------
-#Inventory Manager
+<h2>Inventory Manager</h2>
 
 Username:
 InventoryManager
