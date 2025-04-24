@@ -1,3 +1,5 @@
+from pyexpat.errors import messages
+
 from .models import Item, ItemRequest
 from .forms import ItemRequestForm
 from .forms import ItemForm
@@ -6,6 +8,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from .forms import CustomUserCreationForm
+from django.contrib import messages
+
 
 
 def register(request):
@@ -65,8 +69,21 @@ def view_requests(request):
 @login_required
 def approve_requests(request, request_id):
     req = get_object_or_404(ItemRequest, pk=request_id)
-    req.status = 'approved'
-    req.save()
+
+    if req.status != 'approved':
+        item = req.item
+
+        if req.quantity_requested <= item.quantity:
+            item.quantity -= req.quantity_requested
+            item.save()
+
+            req.status = 'approved'
+            req.save()
+
+            messages.success(request, f'{item.name} x{req.quantity_requested} has been approved')
+        else:
+            messages.error(request, f"Not enough '{item.name}' in inventory to approve request.")
+
     return redirect('view_requests')
 
 @login_required

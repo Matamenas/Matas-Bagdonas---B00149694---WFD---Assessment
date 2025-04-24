@@ -26,10 +26,10 @@ class Item(models.Model):
         return f"{self.name} ({self.quantity})"
 
 class ItemRequest(models.Model):
-    teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='teacher_requests')
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity_requested = models.PositiveIntegerField()
-    requested_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='requested_by')
+    requested_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='user_requests')
     status = models.CharField(max_length=20, choices=[
         ('pending', 'Pending'),
         ('approved', 'Approved'),
@@ -37,3 +37,7 @@ class ItemRequest(models.Model):
         ], default='pending')
     reason = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.item.name} x{self.quantity_requested} by {self.requested_by.username}"
+

@@ -2,6 +2,16 @@
 
 {% block content %}
 {% block title %}<h2>Item Requests</h2> {% endblock %}
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+
 <table class="table">
   <thead>
     <tr>
