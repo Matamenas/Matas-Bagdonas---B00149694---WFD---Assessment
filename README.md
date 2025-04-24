@@ -4,22 +4,34 @@ Logins for different users
 ------------------
 Teacher:
 
+Username:
 Teacher
+
+Password:
 Learn123!
 ------------------
-Admin:
+Admin
 
+Username:
 admin
+
+Password:
 qwerty
 ------------------
 Procurement Officer
 
+Username:
 ProcurementOfficer
+
+Password:
 Officer123!
 ------------------
 Inventory Manager
 
+Username:
 InventoryManager
+
+Password:
 Manager123!
 ------------------
 To access the website RUN: EducationSiteInventory -> python manage.py runserver
