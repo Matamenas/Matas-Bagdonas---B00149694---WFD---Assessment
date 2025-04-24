@@ -1,7 +1,7 @@
 [https://github.com/Matamenas/Matas-Bagdonas---B00149694---WFD---Assessment
 
 <h1>Logins for different users</h1>
-------------------
+
 <h2>Teacher</h2>
 
 Username:
