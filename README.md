@@ -40,4 +40,4 @@ Manager123!
 ------------------
 To access the website RUN: EducationSiteInventory -> python manage.py runserver  
 
-to run automated tests RUN: EducationSiteInventory -> python manage.py test inventory)
+To run automated tests RUN: EducationSiteInventory -> python manage.py test inventory)
